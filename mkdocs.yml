@@ -1,4 +1,5 @@
-﻿site_name: 我的文件網站
+site_name: 我的文件網站
+site_url: https://loyu0425.github.io/-/
 nav:
   - 首頁: index.md
   - 關於: about.md

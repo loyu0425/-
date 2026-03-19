@@ -9,12 +9,20 @@ theme:
     - navigation.sections
     - content.code.copy
   palette:
-    - scheme: default
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       primary: indigo
       accent: indigo
-    - scheme: slate
+      toggle:
+        icon: material/brightness-7
+        name: 切換到深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
       primary: indigo
       accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: 切換到淺色模式
 nav:
   - 首頁: index.md
   - 關於: about.md

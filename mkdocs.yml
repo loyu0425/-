@@ -1,8 +1,25 @@
 site_name: 我的文件網站
 site_url: https://loyu0425.github.io/-/
+repo_url: https://github.com/loyu0425/-
+theme:
+  name: material
+  language: zh-TW
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+    - scheme: slate
+      primary: indigo
+      accent: indigo
 nav:
   - 首頁: index.md
   - 關於: about.md
   - Python:
       - 環境安裝: python/setup.md
       - 基本語法: python/basics.md
+plugins:
+  - search

@@ -28,8 +28,5 @@ nav:
   - 品牌介紹: about.md
   - 產品展示: products.md
   - 3D 檢視: viewer.md
-  - Python:
-      - 環境安裝: python/setup.md
-      - 基本語法: python/basics.md
 plugins:
   - search

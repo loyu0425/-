@@ -1,4 +1,4 @@
-﻿site_name: 我的文件網站
+site_name: 我的文件網站
 site_url: https://loyu0425.github.io/-/
 repo_url: https://github.com/loyu0425/-
 theme:
@@ -30,3 +30,11 @@ nav:
   - 3D 檢視: viewer.md
 plugins:
   - search
+
+extra_javascript:
+  - javascripts/necklace-configurator.js
+  - path: https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js
+    type: module
+
+extra_css:
+  - stylesheets/extra.css

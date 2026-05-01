@@ -1,1 +1,23 @@
 ﻿site/
+請先檢查這個 MkDocs 專案的結構，但不要修改任何檔案。
+
+請確認：
+1. mkdocs.yml 是否存在
+2. docs 資料夾是否存在
+3. 目前 nav 結構是什麼
+4. 是否已經有 assets 資料夾
+5. 是否已經有 extra_javascript 或 extra_css 設定
+
+注意：
+- 只檢查，不要修改
+- 不要刪除任何檔案
+- 不要執行部署指令
+- 如果需要執行 terminal 指令，請先列出指令與用途，等我確認
+mkdocs serve
+extra_javascript:
+  - path: https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js
+    type: module
+
+extra_css:
+  - stylesheets/extra.css
+  

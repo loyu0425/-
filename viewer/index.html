@@ -49,6 +49,8 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -72,11 +74,6 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
-      
-        
-        <a href="#3d" class="md-skip">
-          跳轉到
-        </a>
       
     </div>
     <div data-md-component="announce">
@@ -430,26 +427,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    3D 檢視
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -467,47 +444,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目錄
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        規劃中的功能
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        目前狀態
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -530,38 +466,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目錄
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        規劃中的功能
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        目前狀態
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -581,16 +485,116 @@
   
 
 
-<h1 id="3d">3D 檢視</h1>
-<p>這一頁之後會放 3D 項鍊模型檢視功能。</p>
-<h2 id="_1">規劃中的功能</h2>
-<ul>
-<li>旋轉查看模型</li>
-<li>放大縮小</li>
-<li>不同款式切換</li>
-</ul>
-<h2 id="_2">目前狀態</h2>
-<p>網站架構先完成，3D 模型稍後再接上。</p>
+  <h1>3D 檢視</h1>
+
+<style>
+/* 項鍊設計工作台：解除 MkDocs 文件頁限制 */
+.md-main__inner.md-grid {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+/* 隱藏 MkDocs 左右文件側邊欄 */
+.md-sidebar,
+.md-sidebar--primary,
+.md-sidebar--secondary {
+  display: none !important;
+}
+
+/* 讓內容區吃滿可用寬度 */
+.md-content {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+.md-content__inner {
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.md-content__inner::before {
+  display: none !important;
+}
+</style>
+
+<div class="workbench-container">
+
+  <!-- 上半部：3D 預覽 與 零件庫 -->
+  <div class="workbench-top">
+
+    <!-- 左側：大型 3D 預覽 -->
+    <div class="workbench-preview">
+      <h2>3D 預覽</h2>
+      <p class="preview-note">目前為測試模型，之後將替換為項鍊預覽</p>
+      <div class="large-preview">
+        <model-viewer
+          src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+          alt="3D preview"
+          auto-rotate
+          camera-controls
+          shadow-intensity="1">
+        </model-viewer>
+      </div>
+    </div>
+
+    <!-- 右側：零件庫 -->
+    <div class="workbench-sidebar">
+      <h2>零件庫</h2>
+
+      <!-- 頂端搜尋 -->
+      <div class="search-bar">
+        <input
+          type="text"
+          id="part-search"
+          placeholder="搜尋零件..."
+          aria-label="搜尋零件"
+        >
+      </div>
+
+      <!-- 分類按鈕 -->
+      <div class="filter-buttons" id="filter-buttons">
+        <button class="filter-btn active" data-filter="all">全部</button>
+        <button class="filter-btn" data-filter="chain">鍊條</button>
+        <button class="filter-btn" data-filter="pendant">吊墜</button>
+        <button class="filter-btn" data-filter="bead">珠飾</button>
+        <button class="filter-btn" data-filter="deco">裝飾</button>
+        <button class="filter-btn" data-filter="material">材質</button>
+      </div>
+
+      <!-- 零件網格 -->
+      <div class="parts-grid" id="parts-grid">
+        <!-- JS 動態生成圖示卡片 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 下半部：我的項鍊排列 -->
+  <div class="workbench-bottom">
+    <h2>我的項鍊排列</h2>
+
+    <!-- 排列畫布 -->
+    <div class="arrangement-canvas" id="arrangement-canvas">
+      <!-- JS 動態生成排列或空插槽 -->
+    </div>
+
+    <!-- 拖曳刪除區 -->
+    <div id="trash-zone" class="trash-zone">
+      <span>− 拖曳至此刪除</span>
+    </div>
+
+    <!-- 設計寓意 -->
+    <div class="design-meaning-section">
+      <h3>設計寓意</h3>
+      <p id="meaning-text">選擇零件後，這裡會呈現你的項鍊寓意。</p>
+    </div>
+  </div>
+
+</div>
 
 
 
@@ -644,6 +648,10 @@
     
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/necklace-configurator.js"></script>
+      
+        <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module"></script>
       
     
   </body>

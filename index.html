@@ -49,6 +49,8 @@
       
     
     
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -72,6 +74,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳轉到
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -344,6 +351,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首頁
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="." class="md-nav__link md-nav__link--active">
         
@@ -361,6 +388,47 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        網站內容
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目前進度
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -464,6 +532,38 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        網站內容
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目前進度
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -483,9 +583,59 @@
   
 
 
-  <h1>首頁</h1>
+<h1 id="_1">我的品牌網站</h1>
+<div class="home-hero">
 
-<p>...你的 Markdown 內容...</p>
+# 以 3D 展示呈現產品細節
+
+這是一個結合品牌介紹、產品展示與 3D 檢視的展示型網站。  
+未來可以放入項鍊、飾品、設計作品，讓訪客直接在網頁中旋轉、放大與檢視模型。
+
+[查看產品](products.md){ .md-button .md-button--primary }
+[開啟 3D 檢視](viewer.md){ .md-button }
+
+</div>
+
+<hr />
+<h2 id="_2">網站內容</h2>
+<div class="grid cards" markdown>
+
+-   **品牌介紹**
+
+    ---
+
+    說明品牌理念、設計風格與作品定位。
+
+    [了解品牌](about.md)
+
+-   **產品展示**
+
+    ---
+
+    集中展示作品照片、名稱、特色與規格。
+
+    [查看產品](products.md)
+
+-   **3D 檢視**
+
+    ---
+
+    使用互動式 3D 模型，讓訪客可以旋轉、縮放並檢視作品細節。
+
+    [開啟 3D 檢視](viewer.md)
+
+</div>
+
+<hr />
+<h2 id="_3">目前進度</h2>
+<p>目前網站已完成基本頁面結構，並已加入 3D 模型檢視功能。下一步可以逐步加入：</p>
+<ul>
+<li>品牌 Logo</li>
+<li>首頁主視覺圖片</li>
+<li>產品照片</li>
+<li>自己製作的 <code>.glb</code> 3D 模型</li>
+<li>聯絡方式或社群連結</li>
+</ul>
 
 
 
@@ -539,6 +689,10 @@
     
     
       <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="javascripts/necklace-configurator.js"></script>
+      
+        <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module"></script>
       
     
   </body>

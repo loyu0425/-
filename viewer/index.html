@@ -530,17 +530,22 @@
     <!-- 左側：大型 3D 預覽 -->
     <div class="workbench-preview">
       <h2>3D 預覽</h2>
-      <p class="preview-note">目前為測試模型，之後將替換為項鍊預覽</p>
+      <p class="preview-note">目前顯示水滴形主寶石項鍊模型，可旋轉、縮放檢視細節。</p>
+
       <div class="large-preview">
-      <model-viewer
-  src="../assets/models/necklace.glb"
-  alt="項鍊 3D 預覽"
-  auto-rotate
-  camera-controls
-  shadow-intensity="1"
-  exposure="1"
-  environment-image="neutral">
-</model-viewer>
+        <model-viewer
+          src="../assets/models/necklace.glb?v=teardrop1"
+          alt="水滴形寶石項鍊 3D 預覽"
+          auto-rotate
+          camera-controls
+          shadow-intensity="1"
+          exposure="1"
+          environment-image="neutral"
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          loading="eager"
+          reveal="auto">
+        </model-viewer>
       </div>
     </div>
 
@@ -594,6 +599,7 @@
     <div class="chain-gem-section">
       <h3>鏈條寶石設計區</h3>
       <p class="preview-note">將右側「寶石」拖曳至下方鏈條插槽中，打造專屬點綴。</p>
+
       <div class="chain-slots-container" id="chain-slots-container">
         <!-- JS 動態生成插槽 -->
       </div>

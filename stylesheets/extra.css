@@ -399,6 +399,108 @@
   color: var(--text-light);
   line-height: 1.6;
   margin: 0;
+  white-space: pre-line;
+}
+
+/* ------------------------------------- */
+/* 鏈條寶石設計區 */
+/* ------------------------------------- */
+.chain-gem-section {
+  border-top: 1px solid var(--border-light);
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+.chain-gem-section h3 {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin: 0 0 10px 0;
+}
+.chain-slots-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 30px 20px;
+  background: #faf9f5;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  position: relative;
+  min-height: 50px;
+}
+.chain-slots-container::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 40px;
+  right: 40px;
+  height: 2px;
+  background: #e2dcd0;
+  z-index: 1;
+  transform: translateY(-50%);
+}
+.chain-slot {
+  width: 46px;
+  height: 46px;
+  background: var(--card-bg);
+  border: 2px dashed #dcdcdc;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+}
+.chain-slot.drag-over {
+  border-color: var(--accent-gold);
+  background: #fdfbf7;
+  transform: scale(1.1);
+}
+.chain-slot.has-gem {
+  border-style: solid;
+  border-color: var(--accent-gold);
+  cursor: grab;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.chain-slot.has-gem:active {
+  cursor: grabbing;
+}
+.slot-placeholder {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e2dcd0;
+}
+.gem-icon {
+  font-size: 24px;
+  pointer-events: none;
+}
+.remove-gem-btn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 1px solid #d9534f;
+  color: #d9534f;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 14px;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.chain-slot.has-gem:hover .remove-gem-btn {
+  display: flex;
+}
+.remove-gem-btn:hover {
+  background: #d9534f;
+  color: #fff;
 }
 
 /* RWD */

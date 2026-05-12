@@ -488,7 +488,7 @@
   <h1>3D 檢視</h1>
 
 <style>
-/* ??閮剛?撌乩??堆?閫? MkDocs ?辣????*/
+/* 項鍊設計工作台：解除 MkDocs 文件頁限制 */
 .md-main__inner.md-grid {
   max-width: none !important;
   width: 100% !important;
@@ -497,14 +497,14 @@
   display: block !important;
 }
 
-/* ?梯? MkDocs 撌血?辣?湧?甈?*/
+/* 隱藏 MkDocs 左右文件側邊欄 */
 .md-sidebar,
 .md-sidebar--primary,
 .md-sidebar--secondary {
   display: none !important;
 }
 
-/* 霈摰孵??遛?舐撖砍漲 */
+/* 讓內容區吃滿可用寬度 */
 .md-content {
   width: 100% !important;
   max-width: none !important;
@@ -524,18 +524,18 @@
 
 <div class="workbench-container">
 
-  <!-- 銝??剁?3D ?汗 ???嗡辣摨?-->
+  <!-- 上半部：3D 預覽與零件庫 -->
   <div class="workbench-top">
 
-    <!-- 撌血嚗之??3D ?汗 -->
+    <!-- 左側：大型 3D 預覽 -->
     <div class="workbench-preview">
-      <h2>3D ?汗</h2>
-      <p class="preview-note">?桀?憿舐內瘞湔輕敶Ｖ蜓撖嗥??璅∪?嚗???葬?暹炎閬敦蝭??/p>
+      <h2>3D 預覽</h2>
+      <p class="preview-note">目前顯示水滴形主寶石項鍊模型，可旋轉、縮放檢視細節。</p>
 
       <div class="large-preview">
         <model-viewer
           src="../assets/models/necklace.glb?v=teardrop1"
-          alt="瘞湔輕敶Ｗ窄?喲???3D ?汗"
+          alt="水滴形寶石項鍊 3D 預覽"
           auto-rotate
           camera-controls
           shadow-intensity="1"
@@ -548,73 +548,73 @@
         </model-viewer>
       </div>
 
-<p class="ar-tryon-link">
-  <a id="open-ar-tryon" class="md-button md-button--primary" href="../ar-tryon/">
-    開啟 AR 試戴
-  </a>
-</p>
+      <p class="ar-tryon-link">
+        <a id="open-ar-tryon" class="md-button md-button--primary" href="../ar-tryon/">
+          開啟 AR 試戴
+        </a>
+      </p>
     </div>
 
-    <!-- ?喳嚗隞嗅澈 -->
+    <!-- 右側：零件庫 -->
     <div class="workbench-sidebar">
-      <h2>?嗡辣摨?/h2>
+      <h2>零件庫</h2>
 
-      <!-- ?垢?? -->
+      <!-- 頂端搜尋 -->
       <div class="search-bar">
         <input
           type="text"
           id="part-search"
-          placeholder="???嗡辣..."
-          aria-label="???嗡辣"
+          placeholder="搜尋零件..."
+          aria-label="搜尋零件"
         >
       </div>
 
-      <!-- ???? -->
+      <!-- 分類按鈕 -->
       <div class="filter-buttons" id="filter-buttons">
-        <button class="filter-btn active" data-filter="all">?券</button>
-        <button class="filter-btn" data-filter="chain">??</button>
-        <button class="filter-btn" data-filter="pendant">??</button>
-        <button class="filter-btn" data-filter="bead">?ˇ</button>
-        <button class="filter-btn" data-filter="deco">鋆ˇ</button>
-        <button class="filter-btn" data-filter="gem">撖嗥</button>
-        <button class="filter-btn" data-filter="material">?釭</button>
+        <button class="filter-btn active" data-filter="all">全部</button>
+        <button class="filter-btn" data-filter="chain">鍊條</button>
+        <button class="filter-btn" data-filter="pendant">吊墜</button>
+        <button class="filter-btn" data-filter="bead">珠飾</button>
+        <button class="filter-btn" data-filter="deco">裝飾</button>
+        <button class="filter-btn" data-filter="gem">寶石</button>
+        <button class="filter-btn" data-filter="material">材質</button>
       </div>
 
-      <!-- ?嗡辣蝬脫 -->
+      <!-- 零件網格 -->
       <div class="parts-grid" id="parts-grid">
-        <!-- JS ?????內?∠? -->
+        <!-- JS 動態生成圖示卡片 -->
       </div>
     </div>
   </div>
 
-  <!-- 銝??剁??????? -->
+  <!-- 下半部：我的項鍊排列 -->
   <div class="workbench-bottom">
-    <h2>??????</h2>
+    <h2>我的項鍊排列</h2>
 
-    <!-- ???怠? -->
+    <!-- 排列畫布 -->
     <div class="arrangement-canvas" id="arrangement-canvas">
-      <!-- JS ???????征?局 -->
+      <!-- JS 動態生成排列或空插槽 -->
     </div>
 
-    <!-- ??芷? -->
+    <!-- 拖曳刪除區 -->
     <div id="trash-zone" class="trash-zone">
-      <span>????單迨?芷</span>
+      <span>− 拖曳至此刪除</span>
     </div>
 
-    <!-- ??撖嗥閮剛?? -->
+    <!-- 鏈條寶石設計區 -->
     <div class="chain-gem-section">
-      <h3>??撖嗥閮剛??</h3>
-      <p class="preview-note">撠?氬窄?喋??唾銝???局銝哨???撅祇?蝬氬?/p>
+      <h3>鏈條寶石設計區</h3>
+      <p class="preview-note">將右側「寶石」拖曳至下方鏈條插槽中，打造專屬點綴。</p>
 
       <div class="chain-slots-container" id="chain-slots-container">
-        <!-- JS ?????局 -->
+        <!-- JS 動態生成插槽 -->
       </div>
     </div>
 
-    <!-- 閮剛?撖? -->
+    <!-- 設計寓意 -->
     <div class="design-meaning-section">
-      <h3>閮剛?撖?</h3>
-      <p id="meaning-text">?豢??嗡辣敺??ㄐ???曆???????/p>
+      <h3>設計寓意</h3>
+      <p id="meaning-text">選擇零件後，這裡會呈現你的項鍊寓意。</p>
     </div>
   </div>
 

@@ -358,6 +358,29 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
+  function getCurrentDesignState() {
+    return {
+      version: 1,
+      baseModel: "necklace.glb",
+      pendant: "teardrop-blue",
+      material: "silver",
+      arrangement: currentArrangement.map(item => item.id),
+      chainGems: currentChainGems.map(gem => gem ? gem.id : null)
+    };
+  }
+
+  const arButton = document.getElementById("open-ar-tryon");
+  if (arButton) {
+    arButton.addEventListener("click", function(e) {
+      e.preventDefault();
+      const state = getCurrentDesignState();
+      localStorage.setItem("necklaceDesignState", JSON.stringify(state));
+      
+      const gemsParam = state.chainGems.map(id => id ? id : 'none').join(',');
+      window.location.href = `../ar-tryon/?gems=${gemsParam}`;
+    });
+  }
+
   // 初始執行渲染
   renderLibrary();
   renderCanvas();

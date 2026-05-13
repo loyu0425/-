@@ -121,6 +121,9 @@
         <button class="filter-btn" data-filter="material">材質</button>
       </div>
 
+      <!-- 搜尋篩選狀態 -->
+      <div id="search-status-display" class="search-status-display"></div>
+
       <!-- 零件網格 -->
       <div class="parts-grid" id="parts-grid">
         <!-- JS 動態生成圖示卡片 -->

@@ -35,28 +35,41 @@
 
 <div class="workbench-container">
 
-  <!-- 上半部：3D 預覽 與 零件庫 -->
+  <!-- 上半部：3D 預覽與零件庫 -->
   <div class="workbench-top">
-    
+
     <!-- 左側：大型 3D 預覽 -->
     <div class="workbench-preview">
       <h2>3D 預覽</h2>
-      <p class="preview-note">目前為測試模型，之後將替換為項鍊預覽</p>
+      <p class="preview-note">目前顯示水滴形主寶石項鍊模型，可旋轉、縮放檢視細節。</p>
+
       <div class="large-preview">
         <model-viewer
-          src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
-          alt="3D preview"
+          src="../assets/models/necklace.glb?v=teardrop1"
+          alt="水滴形寶石項鍊 3D 預覽"
           auto-rotate
           camera-controls
-          shadow-intensity="1">
+          shadow-intensity="1"
+          exposure="1"
+          environment-image="neutral"
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          loading="eager"
+          reveal="auto">
         </model-viewer>
       </div>
+
+      <p class="ar-tryon-link">
+        <a id="open-ar-tryon" class="md-button md-button--primary" href="../ar-tryon/">
+          開啟 AR 試戴
+        </a>
+      </p>
     </div>
 
     <!-- 右側：零件庫 -->
     <div class="workbench-sidebar">
       <h2>零件庫</h2>
-      
+
       <!-- 頂端搜尋 -->
       <div class="search-bar">
         <input
@@ -66,7 +79,7 @@
           aria-label="搜尋零件"
         >
       </div>
-      
+
       <!-- 分類按鈕 -->
       <div class="filter-buttons" id="filter-buttons">
         <button class="filter-btn active" data-filter="all">全部</button>
@@ -74,6 +87,7 @@
         <button class="filter-btn" data-filter="pendant">吊墜</button>
         <button class="filter-btn" data-filter="bead">珠飾</button>
         <button class="filter-btn" data-filter="deco">裝飾</button>
+        <button class="filter-btn" data-filter="gem">寶石</button>
         <button class="filter-btn" data-filter="material">材質</button>
       </div>
 
@@ -87,15 +101,25 @@
   <!-- 下半部：我的項鍊排列 -->
   <div class="workbench-bottom">
     <h2>我的項鍊排列</h2>
-    
+
     <!-- 排列畫布 -->
     <div class="arrangement-canvas" id="arrangement-canvas">
       <!-- JS 動態生成排列或空插槽 -->
     </div>
-    
+
     <!-- 拖曳刪除區 -->
     <div id="trash-zone" class="trash-zone">
       <span>− 拖曳至此刪除</span>
+    </div>
+
+    <!-- 鏈條寶石設計區 -->
+    <div class="chain-gem-section">
+      <h3>鏈條寶石設計區</h3>
+      <p class="preview-note">將右側「寶石」拖曳至下方鏈條插槽中，打造專屬點綴。</p>
+
+      <div class="chain-slots-container" id="chain-slots-container">
+        <!-- JS 動態生成插槽 -->
+      </div>
     </div>
 
     <!-- 設計寓意 -->

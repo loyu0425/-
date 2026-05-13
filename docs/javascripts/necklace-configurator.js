@@ -14,15 +14,22 @@ document.addEventListener("DOMContentLoaded", function() {
     { id: 'c2', type: 'chain', name: '蛇骨鍊', icon: '≈' },
     { id: 'd1', type: 'deco', name: '碎鑽', icon: '✧' },
     { id: 'm1', type: 'material', name: '金色材質', icon: '◆' },
-    { id: 'm2', type: 'material', name: '銀色材質', icon: '◇' }
+    { id: 'm2', type: 'material', name: '銀色材質', icon: '◇' },
+    { id: 'g1', type: 'gem', name: '藍寶石', icon: '🔹', meaning: '冷靜、智慧' },
+    { id: 'g2', type: 'gem', name: '粉寶石', icon: '🌸', meaning: '溫柔、愛' },
+    { id: 'g3', type: 'gem', name: '綠寶石', icon: '🟩', meaning: '平衡、希望' },
+    { id: 'g4', type: 'gem', name: '小鑽石', icon: '💎', meaning: '純粹、光芒' },
+    { id: 'g5', type: 'gem', name: '珍珠', icon: '⚪', meaning: '優雅、柔和' }
   ];
 
   let currentArrangement = [];
+  let currentChainGems = new Array(7).fill(null);
   let currentFilter = 'all';
   let searchTerm = '';
 
   const partsGrid = document.getElementById("parts-grid");
   const meaningText = document.getElementById("meaning-text");
+  const chainSlotsContainer = document.getElementById("chain-slots-container");
   const searchInput = document.getElementById("part-search");
   const filterButtons = document.querySelectorAll(".filter-btn");
 
@@ -145,13 +152,112 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // 更新設計寓意
-    if (meaningText) {
-      const itemNames = currentArrangement.map(p => p.name);
-      if (itemNames.length > 0) {
-        meaningText.textContent = `這條由 ${itemNames.join('、')} 所組成的項鍊，展現了您獨特的品味與設計寓意。`;
-      }
-    }
+    updateMeaningText();
   }
+
+  function updateMeaningText() {
+    if (!meaningText) return;
+    const baseNames = currentArrangement.map(p => p.name);
+    
+    // 收集不重複的寶石寓意
+    const gemMeanings = [];
+    const seenGems = new Set();
+    currentChainGems.forEach(gem => {
+      if (gem && !seenGems.has(gem.id)) {
+        seenGems.add(gem.id);
+        gemMeanings.push(`${gem.name} (${gem.meaning})`);
+      }
+    });
+
+    let text = '';
+    if (baseNames.length > 0) {
+      text += `這條由 ${baseNames.join('、')} 所組成的項鍊，展現了您獨特的品味與設計寓意。`;
+    } else {
+      text += '尚未排列項鍊主體。';
+    }
+
+    if (gemMeanings.length > 0) {
+      text += `\n鏈條上的寶石賦予了額外意義：${gemMeanings.join('，')}。`;
+    }
+    
+    meaningText.innerText = text;
+  }
+
+  function renderChainSlots() {
+    if (!chainSlotsContainer) return;
+    chainSlotsContainer.innerHTML = '';
+    
+    currentChainGems.forEach((gem, index) => {
+      const slot = document.createElement('div');
+      slot.className = 'chain-slot';
+      if (gem) {
+        slot.classList.add('has-gem');
+        slot.innerHTML = `
+          <div class="gem-icon">${gem.icon}</div>
+          <button class="remove-gem-btn" onclick="window.removeChainGem(${index})" title="移除寶石">×</button>
+        `;
+        slot.draggable = true;
+        
+        slot.addEventListener('dragstart', (e) => {
+          e.dataTransfer.setData('source', 'chain-slot');
+          e.dataTransfer.setData('index', index);
+          setTimeout(() => slot.style.opacity = '0.5', 0);
+        });
+        
+        slot.addEventListener('dragend', () => {
+          slot.style.opacity = '1';
+        });
+      } else {
+        slot.innerHTML = `<div class="slot-placeholder"></div>`;
+      }
+      
+      slot.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        slot.classList.add('drag-over');
+      });
+
+      slot.addEventListener('dragleave', () => {
+        slot.classList.remove('drag-over');
+      });
+
+      slot.addEventListener('drop', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        slot.classList.remove('drag-over');
+        
+        const source = e.dataTransfer.getData('source');
+        if (source === 'library') {
+          const partId = e.dataTransfer.getData('partId');
+          const part = partsDatabase.find(p => p.id === partId);
+          if (part && part.type === 'gem') {
+            currentChainGems[index] = { ...part };
+            renderChainSlots();
+            updateMeaningText();
+          } else if (part) {
+            alert('此處只能放置「寶石」類別的零件喔！');
+          }
+        } else if (source === 'chain-slot') {
+          const sourceIndex = parseInt(e.dataTransfer.getData('index'));
+          if (sourceIndex !== index && !isNaN(sourceIndex)) {
+            // 交換位置
+            const temp = currentChainGems[index];
+            currentChainGems[index] = currentChainGems[sourceIndex];
+            currentChainGems[sourceIndex] = temp;
+            renderChainSlots();
+            updateMeaningText();
+          }
+        }
+      });
+
+      chainSlotsContainer.appendChild(slot);
+    });
+  }
+
+  window.removeChainGem = function(index) {
+    currentChainGems[index] = null;
+    renderChainSlots();
+    updateMeaningText();
+  };
 
   // 操作邏輯：點擊加入至尾端
   function addPart(part) {
@@ -225,6 +331,11 @@ document.addEventListener("DOMContentLoaded", function() {
         if (!isNaN(index)) {
           removePart(index);
         }
+      } else if (source === 'chain-slot') {
+        const index = parseInt(e.dataTransfer.getData('index'));
+        if (!isNaN(index)) {
+          window.removeChainGem(index);
+        }
       }
     });
   }
@@ -247,7 +358,32 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
+  function getCurrentDesignState() {
+    return {
+      version: 1,
+      baseModel: "necklace.glb",
+      pendant: "teardrop-blue",
+      material: "silver",
+      arrangement: currentArrangement.map(item => item.id),
+      chainGems: currentChainGems.map(gem => gem ? gem.id : null)
+    };
+  }
+
+  const arButton = document.getElementById("open-ar-tryon");
+  if (arButton) {
+    arButton.addEventListener("click", function(e) {
+      e.preventDefault();
+      const state = getCurrentDesignState();
+      localStorage.setItem("necklaceDesignState", JSON.stringify(state));
+      
+      const gemsParam = state.chainGems.map(id => id ? id : 'none').join(',');
+      window.location.href = `../ar-tryon/?gems=${gemsParam}`;
+    });
+  }
+
   // 初始執行渲染
   renderLibrary();
   renderCanvas();
+  renderChainSlots();
+  updateMeaningText();
 });

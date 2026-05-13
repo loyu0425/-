@@ -22,16 +22,40 @@ document.addEventListener("DOMContentLoaded", function() {
     { id: 'g5', type: 'gem', name: '珍珠', icon: '⚪', meaning: '優雅、柔和' }
   ];
 
+  const necklaceModels = {
+    teardrop: {
+      id: "teardrop",
+      name: "水滴形項鍊",
+      viewerSrc: "../assets/models/necklaces/teardrop-necklace.glb",
+      arSrc: "necklaces/teardrop-necklace.glb"
+    },
+    round: {
+      id: "round",
+      name: "圓形寶石項鍊",
+      viewerSrc: "../assets/models/necklaces/round-necklace.glb",
+      arSrc: "necklaces/round-necklace.glb"
+    },
+    oval: {
+      id: "oval",
+      name: "橄欖形寶石項鍊",
+      viewerSrc: "../assets/models/necklaces/oval-necklace.glb",
+      arSrc: "necklaces/oval-necklace.glb"
+    }
+  };
+
   let currentArrangement = [];
   let currentChainGems = new Array(7).fill(null);
   let currentFilter = 'all';
   let searchTerm = '';
+  let selectedModelId = 'teardrop';
 
   const partsGrid = document.getElementById("parts-grid");
   const meaningText = document.getElementById("meaning-text");
   const chainSlotsContainer = document.getElementById("chain-slots-container");
   const searchInput = document.getElementById("part-search");
   const filterButtons = document.querySelectorAll(".filter-btn");
+  const modelStyleButtons = document.querySelectorAll(".model-style-btn");
+  const modelViewer = document.querySelector("model-viewer");
 
   // 渲染零件庫 (卡片)
   function renderLibrary() {
@@ -358,11 +382,27 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
+  function initModelStyleSwitcher() {
+    modelStyleButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        modelStyleButtons.forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        selectedModelId = e.target.getAttribute('data-model-id');
+        
+        if (modelViewer && necklaceModels[selectedModelId]) {
+          modelViewer.src = `${necklaceModels[selectedModelId].viewerSrc}?v=${Date.now()}`;
+        }
+      });
+    });
+  }
+
   function getCurrentDesignState() {
+    const currentModel = necklaceModels[selectedModelId] || necklaceModels['teardrop'];
     return {
-      version: 1,
-      baseModel: "necklace.glb",
-      pendant: "teardrop-blue",
+      version: 2,
+      modelId: selectedModelId,
+      baseModel: currentModel.arSrc,
+      pendant: selectedModelId,
       material: "silver",
       arrangement: currentArrangement.map(item => item.id),
       chainGems: currentChainGems.map(gem => gem ? gem.id : null)
@@ -377,11 +417,12 @@ document.addEventListener("DOMContentLoaded", function() {
       localStorage.setItem("necklaceDesignState", JSON.stringify(state));
       
       const gemsParam = state.chainGems.map(id => id ? id : 'none').join(',');
-      window.location.href = `../ar-tryon/?gems=${gemsParam}`;
+      window.location.href = `../ar-tryon/?model=${selectedModelId}&gems=${gemsParam}`;
     });
   }
 
   // 初始執行渲染
+  initModelStyleSwitcher();
   renderLibrary();
   renderCanvas();
   renderChainSlots();

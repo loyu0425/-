@@ -43,9 +43,28 @@
       <h2>3D 預覽</h2>
       <p class="preview-note">目前顯示水滴形主寶石項鍊模型，可旋轉、縮放檢視細節。</p>
 
+      <div class="model-style-section">
+        <h3>選擇項鍊款式</h3>
+
+        <div class="model-style-buttons" id="model-style-buttons">
+          <button class="model-style-btn active" data-model-id="teardrop">
+            水滴形項鍊
+          </button>
+
+          <button class="model-style-btn" data-model-id="round">
+            圓形寶石項鍊
+          </button>
+
+          <button class="model-style-btn" data-model-id="oval">
+            橄欖形寶石項鍊
+          </button>
+        </div>
+      </div>
+
       <div class="large-preview">
         <model-viewer
-          src="../assets/models/necklace.glb?v=teardrop1"
+          id="necklace-model-viewer"
+          src="../assets/models/necklaces/teardrop-necklace.glb?v=model-switch-1"
           alt="水滴形寶石項鍊 3D 預覽"
           auto-rotate
           camera-controls

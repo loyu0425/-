@@ -54,8 +54,6 @@ document.addEventListener("DOMContentLoaded", function() {
   const chainSlotsContainer = document.getElementById("chain-slots-container");
   const searchInput = document.getElementById("part-search");
   const filterButtons = document.querySelectorAll(".filter-btn");
-  const modelStyleButtons = document.querySelectorAll(".model-style-btn");
-  const modelViewer = document.querySelector("model-viewer");
 
   // 渲染零件庫 (卡片)
   function renderLibrary() {
@@ -383,14 +381,24 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   function initModelStyleSwitcher() {
-    modelStyleButtons.forEach(btn => {
+    const styleButtons = document.querySelectorAll(".model-style-btn");
+    const viewer = document.getElementById("necklace-model-viewer");
+
+    if (!viewer || styleButtons.length === 0) {
+      console.warn("Model switcher elements not found.");
+      return;
+    }
+
+    styleButtons.forEach(btn => {
       btn.addEventListener('click', (e) => {
-        modelStyleButtons.forEach(b => b.classList.remove('active'));
-        e.target.classList.add('active');
-        selectedModelId = e.target.getAttribute('data-model-id');
+        styleButtons.forEach(b => b.classList.remove('active'));
+        const clickedBtn = e.currentTarget;
+        clickedBtn.classList.add('active');
+        selectedModelId = clickedBtn.getAttribute('data-model-id');
         
-        if (modelViewer && necklaceModels[selectedModelId]) {
-          modelViewer.src = `${necklaceModels[selectedModelId].viewerSrc}?v=${Date.now()}`;
+        if (necklaceModels[selectedModelId]) {
+          viewer.src = `${necklaceModels[selectedModelId].viewerSrc}?v=${selectedModelId}`;
+          console.log("Selected necklace model:", selectedModelId, viewer.src);
         }
       });
     });

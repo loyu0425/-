@@ -1,3 +1,8 @@
+/* 修正行動裝置原生拖曳的滑動衝突 */
+.part-card, .arranged-item, .chain-slot.has-gem {
+  touch-action: none;
+}
+
 /* 隱寫掉原本 mkdocs material 的部分背景以便套用新風格 */
 .md-main__inner {
   margin-top: 0;

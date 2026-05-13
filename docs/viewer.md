@@ -1,3 +1,14 @@
+<script src="https://unpkg.com/mobile-drag-drop@3.0.0-rc.0/index.min.js"></script>
+<script src="https://unpkg.com/mobile-drag-drop@3.0.0-rc.0/scroll-behaviour.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/mobile-drag-drop@3.0.0-rc.0/default.css">
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    MobileDragDrop.polyfill({
+      dragImageTranslateOverride: MobileDragDrop.scrollBehaviourDragImageTranslateOverride
+    });
+  });
+</script>
+
 <style>
 /* 項鍊設計工作台：解除 MkDocs 文件頁限制 */
 .md-main__inner.md-grid {

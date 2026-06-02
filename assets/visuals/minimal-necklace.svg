@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+  <title id="title">簡約款鎖骨細鍊視覺</title>
+  <desc id="desc">細緻短鍊搭配小鑽與珍珠點綴，適合日常穿搭。</desc>
+  <rect width="720" height="420" fill="#f8f7f2"/>
+  <path d="M168 122 C224 236 496 236 552 122" fill="none" stroke="#b8b6b0" stroke-width="5" stroke-linecap="round"/>
+  <path d="M208 132 C260 205 460 205 512 132" fill="none" stroke="#d5c49e" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="330" cy="222" r="13" fill="#ffffff" stroke="#c5a96a" stroke-width="4"/>
+  <circle cx="360" cy="231" r="8" fill="#fdfefe" stroke="#b9a36e" stroke-width="3"/>
+  <circle cx="390" cy="222" r="13" fill="#f3eee7" stroke="#c5a96a" stroke-width="4"/>
+  <text x="46" y="362" fill="#81766d" font-family="Arial, sans-serif" font-size="22" font-weight="700">Minimal Daily Line</text>
+</svg>

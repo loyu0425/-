@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+  <title id="title">儀式款主石項鍊視覺</title>
+  <desc id="desc">紙鍊線條搭配橢圓主石、珍珠與小鑽，適合正式場合與拍攝。</desc>
+  <rect width="720" height="420" fill="#fff9f0"/>
+  <path d="M142 110 C206 276 514 276 578 110" fill="none" stroke="#a98036" stroke-width="10" stroke-linecap="round"/>
+  <path d="M184 126 C244 238 476 238 536 126" fill="none" stroke="#d8c294" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="360" cy="247" rx="43" ry="58" fill="#f8fbff" stroke="#9f7830" stroke-width="7"/>
+  <ellipse cx="360" cy="247" rx="23" ry="35" fill="#dfe9f4" opacity=".76"/>
+  <circle cx="292" cy="225" r="14" fill="#fffdf7" stroke="#9f7830" stroke-width="4"/>
+  <circle cx="428" cy="225" r="14" fill="#fffdf7" stroke="#9f7830" stroke-width="4"/>
+  <text x="46" y="362" fill="#8a6a35" font-family="Arial, sans-serif" font-size="22" font-weight="700">Ceremony Piece</text>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+  <title id="title">誕生石款項鍊視覺</title>
+  <desc id="desc">多顆彩色誕生石沿細鍊排列，適合作為生日與紀念禮物。</desc>
+  <rect width="720" height="420" fill="#f6f4ec"/>
+  <path d="M150 126 C216 254 504 254 570 126" fill="none" stroke="#c4b7a2" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="276" cy="217" r="15" fill="#e2b94f" stroke="#9f7830" stroke-width="4"/>
+  <circle cx="318" cy="238" r="15" fill="#e9aab5" stroke="#9f7830" stroke-width="4"/>
+  <circle cx="360" cy="246" r="15" fill="#83b6c9" stroke="#9f7830" stroke-width="4"/>
+  <circle cx="402" cy="238" r="15" fill="#9cbc8e" stroke="#9f7830" stroke-width="4"/>
+  <circle cx="444" cy="217" r="15" fill="#b25d63" stroke="#9f7830" stroke-width="4"/>
+  <text x="46" y="362" fill="#8a6a35" font-family="Arial, sans-serif" font-size="22" font-weight="700">Birthstone Meaning</text>
+</svg>

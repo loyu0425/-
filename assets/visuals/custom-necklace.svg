@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+  <title id="title">客製款寓意項鍊視覺</title>
+  <desc id="desc">金色細鍊搭配刻字牌、初始字母與雙顆寶石，呈現專屬寓意。</desc>
+  <rect width="720" height="420" fill="#fbf4f7"/>
+  <path d="M152 116 C214 262 506 262 568 116" fill="none" stroke="#c6a356" stroke-width="7" stroke-linecap="round"/>
+  <rect x="301" y="221" width="118" height="52" rx="18" fill="#f6dfb0" stroke="#9f7830" stroke-width="5"/>
+  <text x="343" y="255" fill="#8a6324" font-family="Arial, sans-serif" font-size="22" font-weight="800">A</text>
+  <circle cx="282" cy="214" r="14" fill="#e9aab5" stroke="#9f7830" stroke-width="4"/>
+  <circle cx="438" cy="214" r="14" fill="#8eb9c2" stroke="#9f7830" stroke-width="4"/>
+  <text x="46" y="362" fill="#8a6a35" font-family="Arial, sans-serif" font-size="22" font-weight="700">Personal Order</text>
+</svg>

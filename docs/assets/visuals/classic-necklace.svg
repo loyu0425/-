@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+  <title id="title">經典款水滴主石項鍊視覺</title>
+  <desc id="desc">銀色細鍊搭配柔和水滴主石，適合日常配戴與紀念送禮。</desc>
+  <rect width="720" height="420" fill="#fff8f1"/>
+  <path d="M156 118 C210 260 510 260 564 118" fill="none" stroke="#b7aea5" stroke-width="7" stroke-linecap="round"/>
+  <path d="M196 126 C245 220 475 220 524 126" fill="none" stroke="#d7c198" stroke-width="3" stroke-linecap="round"/>
+  <path d="M360 205 C318 258 326 315 360 333 C394 315 402 258 360 205Z" fill="#f8fbff" stroke="#b99c62" stroke-width="7"/>
+  <path d="M360 226 C340 258 343 292 360 306 C377 292 380 258 360 226Z" fill="#c9e8f2" opacity=".72"/>
+  <circle cx="302" cy="218" r="10" fill="#ffffff" stroke="#cab17a" stroke-width="4"/>
+  <circle cx="418" cy="218" r="10" fill="#ffffff" stroke="#cab17a" stroke-width="4"/>
+  <text x="46" y="362" fill="#8a6a35" font-family="Arial, sans-serif" font-size="22" font-weight="700">Classic Necklace</text>
+</svg>

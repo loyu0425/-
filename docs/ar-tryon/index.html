@@ -4,14 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>AR Necklace Try-On</title>
-    <script type="module" crossorigin src="./assets/index-CyXYQRJZ.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CKHhtAPh.css">
+    <script type="module" crossorigin src="./assets/index-CTAUBHnB.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-6aG5AIAB.css">
   </head>
   <body>
     <main id="app" class="app-shell">
       <section class="stage" aria-label="AR necklace preview">
         <div class="stage-placeholder" aria-hidden="true">
           <div class="necklace-outline"></div>
+          <div class="stage-intro">
+            <strong>AR 項鍊試戴</strong>
+            <span>開啟相機後，請讓臉部與肩頸保持在畫面中央。</span>
+          </div>
         </div>
         <video id="cameraVideo" class="camera-video" autoplay playsinline muted></video>
         <canvas id="threeCanvas" class="overlay-canvas"></canvas>
@@ -58,10 +62,21 @@
             <span>Live preview</span>
           </div>
 
+          <div class="camera-preflight" id="cameraPreflight">
+            <strong>開始前請確認</strong>
+            <ul>
+              <li>瀏覽器會要求相機權限，用於即時試戴預覽。</li>
+              <li>相機畫面只在本機瀏覽器處理，不會上傳影像。</li>
+              <li>建議使用明亮環境，讓臉部與肩頸完整入鏡。</li>
+            </ul>
+          </div>
+
           <button id="startButton" class="primary-button" type="button">
             <span aria-hidden="true">◎</span>
             開始相機
           </button>
+
+          <div id="handoffSummary" class="handoff-summary" hidden></div>
 
           <label class="switch-row">
             <span>
@@ -95,6 +110,18 @@
             </label>
             <input id="verticalOffsetRange" class="range-control" type="range" min="-60" max="60" step="1" value="0" />
 
+            <label class="range-row" for="fitDistanceRange">
+              <span>貼合距離</span>
+              <output id="fitDistanceValue" for="fitDistanceRange">標準</output>
+            </label>
+            <input id="fitDistanceRange" class="range-control" type="range" min="-25" max="25" step="1" value="0" />
+
+            <label class="range-row" for="followResponseRange">
+              <span>跟隨反應</span>
+              <output id="followResponseValue" for="followResponseRange">平衡</output>
+            </label>
+            <input id="followResponseRange" class="range-control" type="range" min="0" max="100" step="1" value="50" />
+
             <label class="range-row" for="scaleRange">
               <span>大小</span>
               <output id="scaleValue" for="scaleRange">100%</output>
@@ -122,10 +149,10 @@
           </label>
         </details>
 
-        <div id="designDebugBlock" style="margin-top: 16px; padding: 12px; background: #f0f4f8; border-radius: 8px; font-size: 13px;">
-          <strong>Current Design:</strong>
-          <div id="debugDesignContent" style="margin-top: 4px; color: #333; line-height: 1.4;">Loading...</div>
-        </div>
+        <details id="designDebugBlock" class="design-state-panel" hidden>
+          <summary>設計資料</summary>
+          <div id="debugDesignContent">Loading...</div>
+        </details>
 
         <div id="errorBox" class="error-box" role="alert" hidden></div>
       </aside>

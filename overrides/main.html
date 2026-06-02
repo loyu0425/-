@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  {% set meta = page.meta if page is defined and page else {} %}
+  {% set title = page.title if page is defined and page else config.site_name %}
+  {% set url = page.url if page is defined and page else "" %}
+  {% set page_title = meta.meta_title or title ~ " | " ~ config.site_name %}
+  {% set page_description = meta.description or config.site_description %}
+  {% set page_url = config.site_url ~ url %}
+  {% set og_image = meta.og_image or config.extra.default_og_image %}
+  {% set og_image_url = og_image if og_image.startswith("http") else config.site_url ~ og_image %}
+  {% set og_type = meta.og_type or "website" %}
+  {% if not (page is defined and page) %}
+  <meta name="description" content="{{ page_description | e }}">
+  {% endif %}
+  <meta property="og:site_name" content="{{ config.site_name | e }}">
+  <meta property="og:title" content="{{ (meta.og_title or page_title) | e }}">
+  <meta property="og:description" content="{{ (meta.og_description or page_description) | e }}">
+  <meta property="og:image" content="{{ og_image_url | e }}">
+  <meta property="og:url" content="{{ page_url | e }}">
+  <meta property="og:type" content="{{ og_type | e }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ (meta.twitter_title or meta.og_title or page_title) | e }}">
+  <meta name="twitter:description" content="{{ (meta.twitter_description or meta.og_description or page_description) | e }}">
+  <meta name="twitter:image" content="{{ og_image_url | e }}">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "{{ config.site_name | e }}",
+      "url": "{{ config.site_url | e }}",
+      "description": "{{ config.site_description | e }}"
+    }
+  </script>
+{% endblock %}

@@ -3,24 +3,918 @@
   touch-action: none;
 }
 
+:root {
+  --jewelry-bg: #fffaf3;
+  --jewelry-surface: #ffffff;
+  --jewelry-surface-muted: #f4efe7;
+  --jewelry-border: #ded4c5;
+  --jewelry-heading: #191716;
+  --jewelry-text: #4a4440;
+  --jewelry-muted: #6d655e;
+  --jewelry-accent: #987445;
+  --jewelry-accent-strong: #6b4b24;
+  --jewelry-ink: #111111;
+  --jewelry-ivory: #fffaf3;
+  --jewelry-tech: #247f91;
+  --jewelry-tech-soft: rgba(36, 127, 145, 0.12);
+  --jewelry-shadow: rgba(20, 16, 12, 0.08);
+  --jewelry-danger: #b83f3f;
+  --jewelry-danger-strong: #8f2929;
+  --jewelry-danger-soft: #fff0f0;
+  --jewelry-danger-border: #e6b8b8;
+}
+
+[data-md-color-scheme="slate"] {
+  --jewelry-bg: #151412;
+  --jewelry-surface: #201e1b;
+  --jewelry-surface-muted: #2a2621;
+  --jewelry-border: #3a332b;
+  --jewelry-heading: #f5efe6;
+  --jewelry-text: #ded4c8;
+  --jewelry-muted: #b8aa9a;
+  --jewelry-accent: #72e3fd;
+  --jewelry-accent-strong: #9eeeff;
+  --jewelry-tech: #72e3fd;
+  --jewelry-tech-soft: rgba(114, 227, 253, 0.16);
+  --jewelry-shadow: rgba(0, 0, 0, 0.28);
+  --jewelry-danger: #ff9a9a;
+  --jewelry-danger-strong: #ffc1c1;
+  --jewelry-danger-soft: rgba(255, 154, 154, 0.12);
+  --jewelry-danger-border: rgba(255, 154, 154, 0.38);
+  --md-default-bg-color: #151412;
+  --md-default-fg-color: #ded4c8;
+  --md-default-fg-color--light: #c4b8aa;
+  --md-typeset-color: #ded4c8;
+}
+
+.md-typeset {
+  color: var(--jewelry-text);
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
+  color: var(--jewelry-heading);
+}
+
+.md-typeset a:not(.md-button) {
+  color: var(--jewelry-accent-strong);
+}
+
 /* 隱寫掉原本 mkdocs material 的部分背景以便套用新風格 */
 .md-main__inner {
   margin-top: 0;
 }
 
-/* 確保工作台外層的 H1 標題能隱藏，因為我們重新規劃了主視覺，或者確保不影響排版 */
-.md-typeset h1 {
-  display: none; /* 讓版面完全乾淨交給 workbench-container */
+/* Phase 1 品牌頁基礎樣式 */
+.brand-hero {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  min-height: min(76vh, 720px);
+  margin: 0 calc(50% - 50vw) 44px;
+  padding: clamp(72px, 10vw, 132px) max(24px, calc((100vw - 1180px) / 2)) 44px;
+  overflow: hidden;
+  color: #fffaf3;
+  background:
+    linear-gradient(90deg, rgba(12, 12, 12, 0.86) 0 44%, rgba(12, 12, 12, 0.46) 72%, rgba(12, 12, 12, 0.7) 100%),
+    url("../assets/visuals/ceremony-necklace.svg") center right / min(58vw, 760px) auto no-repeat,
+    linear-gradient(135deg, #101010, #31271d 58%, #121212);
+}
+
+.brand-hero > * {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+}
+
+.brand-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto max(24px, calc((100vw - 1180px) / 2)) 34px auto;
+  z-index: 0;
+  width: min(320px, 34vw);
+  height: min(320px, 34vw);
+  border: 1px solid rgba(255, 250, 243, 0.3);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255, 250, 243, 0.08), transparent 58%),
+    conic-gradient(from 210deg, rgba(255, 250, 243, 0), rgba(255, 250, 243, 0.3), rgba(255, 250, 243, 0));
+  opacity: 0.9;
+}
+
+.brand-eyebrow,
+.brand-card-kicker {
+  margin: 0 0 10px;
+  color: var(--jewelry-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.brand-hero h1 {
+  margin: 0;
+  color: #fffaf3;
+  font-size: clamp(2.45rem, 6.6vw, 5.8rem);
+  line-height: 1.08;
+  font-weight: 650;
+}
+
+.brand-lede {
+  max-width: 720px;
+  margin: 22px 0 0;
+  color: rgba(255, 250, 243, 0.86);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.brand-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.brand-actions .md-button {
+  margin: 0;
+  white-space: normal;
+}
+
+.brand-proof-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.brand-proof-row span {
+  padding: 7px 11px;
+  border: 1px solid rgba(255, 250, 243, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 250, 243, 0.08);
+  color: rgba(255, 250, 243, 0.82);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.brand-hero .md-button {
+  border-color: rgba(255, 250, 243, 0.5);
+  color: #fffaf3;
+}
+
+.brand-hero .md-button--primary {
+  border-color: #fffaf3;
+  background: #fffaf3;
+  color: #151412;
+}
+
+.luxury-edit-panel,
+.collection-editorial {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 22px;
+  align-items: end;
+  margin: 0 0 42px;
+  padding: 26px 0 24px;
+  border-top: 1px solid var(--jewelry-border);
+  border-bottom: 1px solid var(--jewelry-border);
+}
+
+.luxury-edit-panel h2,
+.collection-editorial h2 {
+  max-width: 720px;
+  margin: 0 0 10px;
+  color: var(--jewelry-heading);
+  font-size: clamp(1.65rem, 3.4vw, 2.65rem);
+  font-weight: 620;
+  line-height: 1.16;
+}
+
+.luxury-edit-panel p:last-child,
+.collection-editorial p:last-child {
+  max-width: 760px;
+  margin: 0;
+  color: var(--jewelry-text);
+  line-height: 1.75;
+}
+
+.luxury-edit-list {
+  display: grid;
+  gap: 8px;
+  min-width: 220px;
+}
+
+.luxury-edit-list span {
+  padding: 9px 0;
+  border-bottom: 1px solid var(--jewelry-border);
+  color: var(--jewelry-heading);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.human-tech-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+  gap: 24px;
+  align-items: stretch;
+  margin: 10px 0 38px;
+  padding: 24px;
+  border: 1px solid color-mix(in srgb, var(--jewelry-tech) 34%, var(--jewelry-border));
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, var(--jewelry-tech-soft) 0 1px, transparent 1px 100%),
+    linear-gradient(180deg, color-mix(in srgb, var(--jewelry-surface) 88%, transparent), var(--jewelry-bg));
+  background-size: 18px 18px, auto;
+  box-shadow: 0 14px 34px var(--jewelry-shadow);
+}
+
+.human-tech-panel h2 {
+  margin: 0 0 12px;
+  color: var(--jewelry-heading);
+}
+
+.human-tech-panel p:last-child {
+  margin: 0;
+  color: var(--jewelry-text);
+  line-height: 1.75;
+}
+
+.human-tech-steps {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.human-tech-steps li {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--jewelry-border);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--jewelry-surface) 88%, transparent);
+}
+
+.human-tech-steps span,
+.human-tech-steps strong,
+.human-tech-steps small {
+  display: block;
+}
+
+.human-tech-steps span {
+  color: var(--jewelry-tech);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.human-tech-steps strong {
+  margin-top: 4px;
+  color: var(--jewelry-heading);
+}
+
+.human-tech-steps small {
+  margin-top: 4px;
+  color: var(--jewelry-muted);
+  line-height: 1.5;
+}
+
+.commercial-experience-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 18px;
+  margin: 24px 0 36px;
+}
+
+.commercial-experience-panel {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--jewelry-border);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--jewelry-bg) 96%, transparent), color-mix(in srgb, var(--jewelry-surface-muted) 70%, transparent)),
+    var(--jewelry-bg);
+}
+
+.commercial-experience-panel--wide {
+  grid-row: span 2;
+}
+
+.commercial-experience-panel h3 {
+  margin: 0 0 10px;
+  color: var(--jewelry-heading);
+  font-size: 1.35rem;
+}
+
+.commercial-experience-panel p:last-child {
+  margin: 0;
+  color: var(--jewelry-text);
+  line-height: 1.75;
+}
+
+.commercial-process {
+  padding: 22px 26px;
+  border: 1px solid var(--jewelry-border);
+  border-radius: 8px;
+  background: var(--jewelry-bg);
+}
+
+.commercial-process ol {
+  margin-bottom: 0;
+}
+
+.brand-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin: 24px 0 34px;
+}
+
+.brand-feature-card {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid var(--jewelry-border);
+  border-radius: 8px;
+  background: var(--jewelry-bg);
+}
+
+.brand-feature-card h3 {
+  margin: 0 0 10px;
+  color: var(--jewelry-heading);
+}
+
+.brand-feature-card p {
+  margin: 0 0 14px;
+  color: var(--jewelry-text);
+  line-height: 1.7;
+}
+
+.brand-feature-card a {
+  font-weight: 700;
+}
+
+.luxury-service-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 24px 0 36px;
+  border-top: 1px solid var(--jewelry-border);
+  border-bottom: 1px solid var(--jewelry-border);
+}
+
+.luxury-service-row section {
+  min-width: 0;
+  padding: 24px 22px;
+  border-right: 1px solid var(--jewelry-border);
+}
+
+.luxury-service-row section:last-child {
+  border-right: 0;
+}
+
+.luxury-service-row span {
+  display: block;
+  margin-bottom: 26px;
+  color: var(--jewelry-accent);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.luxury-service-row h3 {
+  margin: 0 0 10px;
+  color: var(--jewelry-heading);
+  font-size: 1.15rem;
+}
+
+.luxury-service-row p {
+  margin: 0;
+  color: var(--jewelry-text);
+  line-height: 1.68;
+}
+
+@media screen and (max-width: 760px) {
+  .brand-hero {
+    min-height: auto;
+    margin-inline: calc(50% - 50vw);
+    padding: 54px 20px 34px;
+    background:
+      linear-gradient(180deg, rgba(10, 10, 10, 0.72), rgba(10, 10, 10, 0.88)),
+      url("../assets/visuals/ceremony-necklace.svg") center bottom / 120% auto no-repeat,
+      #111111;
+  }
+
+  .brand-hero::after {
+    display: none;
+  }
+
+  .brand-hero h1 {
+    font-size: 2.55rem;
+  }
+
+  .brand-lede {
+    font-size: 0.98rem;
+  }
+
+  .brand-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .brand-actions .md-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .brand-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .luxury-edit-panel,
+  .collection-editorial {
+    grid-template-columns: 1fr;
+  }
+
+  .luxury-edit-list {
+    min-width: 0;
+  }
+
+  .luxury-service-row {
+    grid-template-columns: 1fr;
+  }
+
+  .luxury-service-row section {
+    border-right: 0;
+    border-bottom: 1px solid var(--jewelry-border);
+  }
+
+  .luxury-service-row section:last-child {
+    border-bottom: 0;
+  }
+
+  .human-tech-panel {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .commercial-experience-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .commercial-experience-panel--wide {
+    grid-row: auto;
+  }
+}
+
+/* Phase 2 產品展示頁 */
+.product-series-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin: 34px 0 42px;
+}
+
+.selection-assist-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+  gap: 20px;
+  margin: 24px 0 30px;
+  padding: 22px;
+  border: 1px solid var(--jewelry-border);
+  border-radius: 8px;
+  background: var(--jewelry-surface);
+  box-shadow: 0 10px 28px var(--jewelry-shadow);
+}
+
+.selection-assist-panel h2 {
+  margin: 0 0 10px;
+  color: var(--jewelry-heading);
+}
+
+.selection-assist-panel p:last-child {
+  margin: 0;
+  color: var(--jewelry-text);
+  line-height: 1.75;
+}
+
+.selection-assist-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.selection-assist-grid a {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--jewelry-border);
+  border-radius: 8px;
+  background: var(--jewelry-surface-muted);
+  text-decoration: none;
+}
+
+.selection-assist-grid a:hover,
+.selection-assist-grid a:focus-visible {
+  border-color: var(--jewelry-tech);
+  box-shadow: 0 0 0 3px var(--jewelry-tech-soft);
+}
+
+.selection-assist-grid strong,
+.selection-assist-grid span {
+  display: block;
+}
+
+.selection-assist-grid strong {
+  color: var(--jewelry-heading);
+  line-height: 1.45;
+}
+
+.selection-assist-grid span {
+  margin-top: 6px;
+  color: var(--jewelry-muted);
+  line-height: 1.45;
+}
+
+.fit-guide-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(340px, 1.18fr);
+  gap: 20px;
+  align-items: stretch;
+  margin: 0 0 32px;
+  padding: 22px;
+  border: 1px solid color-mix(in srgb, var(--jewelry-tech) 30%, var(--jewelry-border));
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, var(--jewelry-tech-soft) 0 1px, transparent 1px 100%),
+    var(--jewelry-surface);
+  background-size: 18px 18px, auto;
+  box-shadow: 0 10px 28px var(--jewelry-shadow);
+}
+
+.fit-guide-panel h2 {
+  margin: 0 0 10px;
+  color: var(--jewelry-heading);
+}
+
+.fit-guide-panel p:last-child {
+  margin: 0;
+  color: var(--jewelry-text);
+  line-height: 1.75;
+}
+
+.fit-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.fit-guide-grid article {
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid var(--jewelry-border);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--jewelry-surface) 90%, transparent);
+}
+
+.fit-guide-grid span,
+.fit-guide-grid strong {
+  display: block;
+}
+
+.fit-guide-grid span {
+  color: var(--jewelry-tech);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.fit-guide-grid strong {
+  margin-top: 5px;
+  color: var(--jewelry-heading);
+}
+
+.fit-guide-grid p {
+  margin: 7px 0 0;
+  color: var(--jewelry-muted);
+  line-height: 1.55;
+}
+
+.atelier-readiness-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(360px, 1.12fr);
+  gap: 22px;
+  align-items: start;
+  margin: 24px 0 34px;
+  padding: 24px;
+  border: 1px solid var(--jewelry-border);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--jewelry-surface) 92%, transparent), color-mix(in srgb, var(--jewelry-surface-muted) 84%, transparent)),
+    var(--jewelry-surface);
+  box-shadow: 0 10px 28px var(--jewelry-shadow);
+}
+
+.atelier-readiness-panel h2 {
+  margin: 0 0 10px;
+  color: var(--jewelry-heading);
+  font-size: clamp(1.35rem, 2.6vw, 2.05rem);
+  line-height: 1.2;
+}
+
+.atelier-readiness-panel p:last-child {
+  margin: 0;
+  color: var(--jewelry-text);
+  line-height: 1.7;
+}
+
+.atelier-readiness-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.atelier-readiness-grid article {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--jewelry-border);
+  border-radius: 8px;
+  background: var(--jewelry-bg);
+}
+
+.atelier-readiness-grid span,
+.atelier-readiness-grid strong {
+  display: block;
+}
+
+.atelier-readiness-grid span {
+  margin-bottom: 8px;
+  color: var(--jewelry-accent);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.atelier-readiness-grid strong {
+  color: var(--jewelry-heading);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.atelier-readiness-grid p {
+  margin: 8px 0 0;
+  color: var(--jewelry-muted);
+  font-size: 13px;
+  line-height: 1.62;
+}
+
+.atelier-readiness-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.product-series-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--jewelry-border);
+  border-radius: 0;
+  background: var(--jewelry-bg);
+  box-shadow: none;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.product-series-card:hover {
+  border-color: color-mix(in srgb, var(--jewelry-accent) 52%, var(--jewelry-border));
+  box-shadow: 0 18px 44px var(--jewelry-shadow);
+  transform: translateY(-2px);
+}
+
+.product-image-frame,
+.product-image-placeholder {
+  min-height: 180px;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  color: rgba(48, 42, 38, 0.72);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background:
+    radial-gradient(circle at 50% 44%, rgba(255, 255, 255, 0.88) 0 12%, transparent 13%),
+    linear-gradient(135deg, #f7efe6, #eee2d2);
+}
+
+.product-image-frame {
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  background: var(--jewelry-surface-muted);
+}
+
+.product-image-asset {
+  display: block;
+  width: 100%;
+  min-height: 180px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.product-image-placeholder span {
+  padding: 6px 9px;
+  border: 1px solid rgba(138, 106, 53, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 253, 250, 0.76);
+}
+
+.product-image-classic {
+  background:
+    radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.9) 0 9%, transparent 10%),
+    radial-gradient(circle at 50% 38%, transparent 0 23%, rgba(138, 106, 53, 0.32) 24% 25%, transparent 26%),
+    linear-gradient(135deg, #f8efe8, #ead8c7);
+}
+
+.product-image-minimal {
+  background:
+    radial-gradient(circle at 52% 42%, rgba(255, 255, 255, 0.94) 0 5%, transparent 6%),
+    linear-gradient(110deg, transparent 0 45%, rgba(138, 106, 53, 0.22) 46% 47%, transparent 48%),
+    linear-gradient(135deg, #f7f4ef, #e8e6de);
+}
+
+.product-image-custom {
+  background:
+    radial-gradient(circle at 42% 39%, rgba(255, 255, 255, 0.9) 0 6%, transparent 7%),
+    radial-gradient(circle at 58% 42%, rgba(255, 255, 255, 0.86) 0 8%, transparent 9%),
+    linear-gradient(135deg, #f5eaf0, #e8ddc9);
+}
+
+.product-image-birthstone {
+  background:
+    radial-gradient(circle at 42% 42%, rgba(146, 192, 196, 0.72) 0 5%, transparent 6%),
+    radial-gradient(circle at 50% 36%, rgba(231, 171, 181, 0.72) 0 5%, transparent 6%),
+    radial-gradient(circle at 58% 42%, rgba(226, 191, 95, 0.7) 0 5%, transparent 6%),
+    linear-gradient(135deg, #f8f1eb, #e9e3d8);
+}
+
+.product-image-ceremony {
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.94) 0 10%, transparent 11%),
+    radial-gradient(circle at 50% 35%, transparent 0 27%, rgba(138, 106, 53, 0.34) 28% 29%, transparent 30%),
+    linear-gradient(135deg, #fbf6ef, #e9d8c6);
+}
+
+.product-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 22px;
+}
+
+.product-kicker {
+  margin: 0 0 8px;
+  color: var(--jewelry-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.product-series-card h2 {
+  margin: 0 0 10px;
+  color: var(--jewelry-heading);
+  font-size: 1.52rem;
+  font-weight: 620;
+}
+
+.product-series-card--highlight {
+  border-color: rgba(138, 106, 53, 0.34);
+  box-shadow: 0 14px 34px rgba(138, 106, 53, 0.12);
+}
+
+.product-positioning {
+  min-height: 3.4em;
+  margin: 0 0 18px;
+  color: var(--jewelry-text);
+  line-height: 1.7;
+}
+
+.product-spec-list {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 20px;
+}
+
+.product-spec-list div {
+  min-width: 0;
+}
+
+.product-spec-list dt {
+  margin-bottom: 3px;
+  color: var(--jewelry-heading);
+  font-weight: 800;
+}
+
+.product-spec-list dd {
+  margin: 0;
+  color: var(--jewelry-text);
+  line-height: 1.65;
+}
+
+.product-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.product-actions .md-button {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  white-space: normal;
+}
+
+.styling-projection-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin: 22px 0 34px;
+}
+
+.styling-projection-card {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid var(--jewelry-border);
+  border-radius: 8px;
+  background: var(--jewelry-bg);
+  box-shadow: 0 10px 28px var(--jewelry-shadow);
+}
+
+.styling-projection-card h3 {
+  margin: 0 0 10px;
+  color: var(--jewelry-heading);
+}
+
+.styling-projection-card p:last-of-type {
+  color: var(--jewelry-text);
+  line-height: 1.72;
+}
+
+.styling-projection-card a {
+  font-weight: 800;
+}
+
+@media screen and (max-width: 1100px) {
+  .product-series-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .product-positioning {
+    min-height: 0;
+  }
+
+  .styling-projection-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .selection-assist-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .selection-assist-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fit-guide-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .fit-guide-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .atelier-readiness-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .atelier-readiness-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* 工作台主容器：米白背景與全版精品風格 */
 .workbench-container {
-  --bg-color: #fcfbfa;
-  --card-bg: #ffffff;
-  --text-dark: #333333;
-  --text-light: #888888;
-  --accent-gold: #c5a059;
-  --border-light: #eaeaea;
+  --bg-color: var(--jewelry-bg);
+  --card-bg: var(--jewelry-surface);
+  --text-dark: var(--jewelry-heading);
+  --text-light: var(--jewelry-muted);
+  --accent-gold: var(--jewelry-accent);
+  --border-light: var(--jewelry-border);
   
   color: var(--text-dark);
   background-color: var(--bg-color);
@@ -33,6 +927,51 @@
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+}
+
+.workbench-intro {
+  max-width: 860px;
+  margin-bottom: 24px;
+}
+
+.workbench-intro h1 {
+  margin: 0 0 12px;
+  color: var(--jewelry-heading);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.1;
+}
+
+.workbench-intro p:last-child {
+  max-width: 720px;
+  margin: 0;
+  color: var(--jewelry-text);
+  line-height: 1.8;
+}
+
+.workbench-guidance {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.workbench-guidance span {
+  padding: 8px 11px;
+  border: 1px solid color-mix(in srgb, var(--jewelry-tech) 36%, var(--jewelry-border));
+  border-radius: 999px;
+  background: var(--jewelry-tech-soft);
+  color: var(--jewelry-heading);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.workbench-kicker {
+  margin: 0 0 8px;
+  color: var(--jewelry-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .workbench-container h2 {
@@ -74,15 +1013,132 @@
 }
 
 .large-preview {
+  position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
   min-height: 480px;
   max-height: 620px;
   overflow: hidden;
   border-radius: 8px;
-  background: #faf9f5;
+  background: var(--jewelry-surface-muted);
   border: 1px solid var(--border-light);
   box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.preview-drop-zones {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.preview-drop-zone {
+  position: absolute;
+  display: inline-grid;
+  place-items: center;
+  width: 72px;
+  min-height: 44px;
+  padding: 8px;
+  border: 1px dashed color-mix(in srgb, var(--accent-gold) 58%, var(--border-light));
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--jewelry-surface) 82%, transparent);
+  color: var(--text-light);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  pointer-events: auto;
+  transform: translate(-50%, -50%);
+  transition:
+    background 140ms ease,
+    border-color 140ms ease,
+    box-shadow 140ms ease,
+    color 140ms ease;
+}
+
+.preview-drop-zone--top {
+  left: 50%;
+  top: 28%;
+}
+
+.preview-drop-zone--left {
+  left: 33%;
+  top: 45%;
+}
+
+.preview-drop-zone--center {
+  left: 50%;
+  top: 50%;
+}
+
+.preview-drop-zone--right {
+  left: 67%;
+  top: 45%;
+}
+
+.preview-drop-zone--drop {
+  left: 50%;
+  top: 66%;
+}
+
+.preview-drop-zone:hover,
+.preview-drop-zone.drag-over {
+  border-color: var(--accent-gold);
+  background: var(--jewelry-surface);
+  color: var(--accent-gold);
+  box-shadow: 0 10px 24px rgba(197, 160, 89, 0.2);
+}
+
+.preview-drop-zone.drag-denied {
+  border-color: rgba(188, 86, 86, 0.56);
+  color: #bc5656;
+}
+
+.preview-drop-zone.has-part {
+  border-style: solid;
+  border-color: var(--accent-gold);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(246, 238, 224, 0.88)),
+    var(--jewelry-surface);
+  color: var(--text-dark);
+  box-shadow:
+    0 14px 30px rgba(75, 57, 20, 0.16),
+    inset 0 0 0 1px rgba(197, 160, 89, 0.2);
+}
+
+.slot-part-icon {
+  display: block;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.slot-part-name {
+  display: block;
+  max-width: 60px;
+  margin-top: 4px;
+  overflow: hidden;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.preview-drop-hint {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  z-index: 2;
+  margin: 0;
+  padding: 8px 10px;
+  border: 1px solid color-mix(in srgb, var(--accent-gold) 22%, var(--border-light));
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--jewelry-surface) 88%, transparent);
+  color: var(--text-light);
+  font-size: 12px;
+  line-height: 1.35;
+  text-align: center;
+  pointer-events: none;
 }
 
 /* 款式選擇 UI */
@@ -90,40 +1146,100 @@
   margin-bottom: 20px;
 }
 
-.model-style-section h3 {
+.model-style-heading {
+  align-items: start;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.model-style-heading h3 {
   font-size: 14px;
   font-weight: 500;
-  margin: 0 0 10px 0;
+  margin: 0 0 4px 0;
   color: var(--text-dark);
 }
 
+.model-style-heading p {
+  color: var(--text-light);
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 620px;
+}
+
+.model-style-count {
+  border: 1px solid var(--border-light);
+  border-radius: 999px;
+  color: var(--accent-gold);
+  flex: 0 0 auto;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 7px 10px;
+}
+
 .model-style-buttons {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 10px;
-  flex-wrap: wrap;
 }
 
 .model-style-btn {
   background: var(--card-bg);
   border: 1px solid var(--border-light);
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 13px;
+  border-radius: 8px;
+  color: var(--text-dark);
   cursor: pointer;
-  color: var(--text-light);
+  display: grid;
+  gap: 4px;
+  min-height: 76px;
+  padding: 12px;
+  text-align: left;
   transition: all 0.2s;
 }
 
-.model-style-btn:hover {
-  border-color: var(--accent-gold);
+.model-style-btn em {
   color: var(--accent-gold);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.model-style-btn strong,
+.model-style-btn span {
+  display: block;
+  line-height: 1.4;
+}
+
+.model-style-btn strong {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.model-style-btn span {
+  color: var(--text-light);
+  font-size: 12px;
+}
+
+.model-style-btn:hover {
+  background: var(--jewelry-surface-muted);
+  border-color: var(--accent-gold);
+  transform: translateY(-1px);
 }
 
 .model-style-btn.active {
-  background: var(--accent-gold);
-  color: #fff;
+  background: var(--jewelry-surface-muted);
   border-color: var(--accent-gold);
   box-shadow: 0 2px 8px rgba(197, 160, 89, 0.3);
+}
+
+.model-style-btn.active strong {
+  color: var(--accent-gold);
 }
 
 .large-preview model-viewer {
@@ -131,6 +1247,71 @@
   height: 100%;
   display: block;
   background-color: transparent;
+}
+
+.model-asset-panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.model-asset-panel > div {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--jewelry-surface-muted);
+}
+
+.model-asset-panel span,
+.model-asset-panel small {
+  display: block;
+}
+
+.model-asset-panel span {
+  margin-bottom: 6px;
+  color: var(--text-light);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.model-asset-panel strong {
+  display: block;
+  color: var(--text-dark);
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.model-asset-panel small {
+  margin-top: 4px;
+  color: var(--text-light);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+#active-model-category {
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+.ar-tryon-link {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0 0;
+}
+
+.ar-tryon-link .md-button {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+}
+
+.ar-tryon-note {
+  color: var(--text-light);
+  font-size: 12px;
+  text-align: center;
 }
 
 /* 右側：零件庫 */
@@ -206,6 +1387,24 @@
   padding-bottom: 10px;
   border-bottom: 1px solid #f0f0f0;
   min-height: 18px;
+}
+
+.parts-empty-state {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 6px;
+  align-content: center;
+  min-height: 160px;
+  padding: 18px;
+  border: 1px dashed #ded2bf;
+  border-radius: 8px;
+  color: #6f665f;
+  text-align: center;
+  background: #fdfbf7;
+}
+
+.parts-empty-state strong {
+  color: #403832;
 }
 
 /* 零件網格 */
@@ -299,6 +1498,243 @@
   box-shadow: 0 4px 20px rgba(0,0,0,0.02);
 }
 
+.design-summary-panel {
+  margin-bottom: 30px;
+  padding: 26px 30px;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  background: var(--jewelry-bg);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+
+.design-coach-panel {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.32fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  margin: 18px 0 20px;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--jewelry-tech) 34%, var(--border-light));
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, var(--jewelry-tech-soft) 0 1px, transparent 1px 100%),
+    var(--jewelry-surface);
+  background-size: 16px 16px, auto;
+}
+
+.design-coach-panel span,
+.design-coach-panel strong {
+  display: block;
+}
+
+.design-coach-panel span {
+  margin-bottom: 6px;
+  color: var(--jewelry-tech);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.design-coach-panel strong {
+  color: var(--text-dark);
+  line-height: 1.45;
+}
+
+.design-coach-panel p {
+  margin: 0;
+  color: var(--jewelry-text);
+  line-height: 1.65;
+}
+
+.service-confidence-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -6px 0 20px;
+}
+
+.service-confidence-strip span {
+  padding: 7px 10px;
+  border: 1px solid var(--jewelry-border);
+  border-radius: 999px;
+  background: var(--jewelry-surface);
+  color: var(--jewelry-muted);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.service-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 22px 0 34px;
+}
+
+.service-trust-card {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--jewelry-border);
+  border-radius: 8px;
+  background: var(--jewelry-bg);
+  box-shadow: 0 10px 28px var(--jewelry-shadow);
+}
+
+.service-trust-card h3 {
+  margin: 0 0 10px;
+  color: var(--jewelry-heading);
+  font-size: 1rem;
+}
+
+.service-trust-card p:last-child {
+  margin: 0;
+  color: var(--jewelry-text);
+  line-height: 1.68;
+}
+
+@media screen and (max-width: 1100px) {
+  .service-trust-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .service-trust-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.design-preset-section {
+  flex: 0 0 auto;
+  margin-bottom: 16px;
+  padding: 14px;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  background: var(--jewelry-surface-muted);
+}
+
+.design-preset-section h3 {
+  margin: 0 0 6px;
+  color: var(--text-dark);
+  font-size: 14px;
+}
+
+.design-preset-section p {
+  margin: 0 0 12px;
+  color: var(--text-light);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.design-preset-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.design-preset-btn {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--card-bg);
+  color: var(--text-dark);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s, transform 0.2s, background-color 0.2s;
+}
+
+.design-preset-btn:hover,
+.design-preset-btn.active {
+  border-color: var(--accent-gold);
+  background: color-mix(in srgb, var(--jewelry-surface-muted) 76%, var(--jewelry-accent) 24%);
+  transform: translateY(-1px);
+}
+
+.design-preset-btn strong,
+.design-preset-btn span {
+  pointer-events: none;
+}
+
+.design-preset-btn strong {
+  color: var(--text-dark);
+  font-size: 13px;
+}
+
+.design-preset-btn span {
+  color: var(--text-light);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.summary-heading-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.summary-heading-row h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--text-dark);
+}
+
+.summary-status-pill {
+  flex: 0 0 auto;
+  padding: 6px 10px;
+  border: 1px solid #e4dacb;
+  border-radius: 999px;
+  color: #8b8178;
+  background: #faf7f1;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.summary-status-pill.is-active {
+  border-color: rgba(138, 106, 53, 0.35);
+  color: #725628;
+  background: #f7eddb;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.summary-item {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--jewelry-border);
+  border-radius: 8px;
+  background: var(--jewelry-surface);
+}
+
+.summary-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--jewelry-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.summary-item strong {
+  display: block;
+  color: var(--jewelry-heading);
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.summary-item--wide {
+  grid-column: span 2;
+}
+
 .arrangement-canvas {
   min-height: 200px;
   display: flex;
@@ -310,12 +1746,32 @@
   margin-bottom: 20px;
   flex-wrap: wrap;
   gap: 20px;
-  background: #faf9f5;
+  background: var(--jewelry-surface-muted);
   transition: background-color 0.3s;
 }
 
 .arrangement-canvas.drag-over {
   background-color: #f1ebd8;
+}
+
+.arrangement-empty-state {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  color: #746b63;
+  text-align: center;
+}
+
+.arrangement-empty-state strong {
+  color: #3f3832;
+  font-size: 15px;
+}
+
+.arrangement-empty-state span {
+  max-width: 360px;
+  color: #8b8178;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 /* 拖曳刪除區 */
@@ -456,11 +1912,11 @@
   line-height: 1.8;
   margin: 0;
   white-space: pre-line;
-  background: #fdfbf7;
+  background: var(--jewelry-surface-muted);
   padding: 18px 22px;
   border-radius: 8px;
   border: 1px solid #eae5db;
-  color: #5b5550;
+  color: var(--jewelry-text);
   letter-spacing: 0.5px;
 }
 
@@ -484,7 +1940,7 @@
   align-items: center;
   gap: 15px;
   padding: 30px 20px;
-  background: #faf9f5;
+  background: var(--jewelry-surface-muted);
   border: 1px solid var(--border-light);
   border-radius: 8px;
   position: relative;
@@ -577,13 +2033,40 @@
     grid-template-columns: 1fr;
     gap: 20px;
   }
+  .workbench-intro {
+    margin-bottom: 18px;
+  }
   .workbench-preview {
     padding: 20px;
+  }
+  .model-style-heading {
+    display: grid;
+  }
+  .model-style-count {
+    justify-self: start;
+  }
+  .model-style-buttons {
+    grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
   }
   .large-preview {
     min-height: auto;
     aspect-ratio: auto;
     height: 400px;
+  }
+  .preview-drop-zone {
+    width: 62px;
+    min-height: 40px;
+    padding: 6px;
+    font-size: 10px;
+  }
+  .slot-part-icon {
+    font-size: 18px;
+  }
+  .slot-part-name {
+    max-width: 52px;
+  }
+  .preview-drop-hint {
+    font-size: 11px;
   }
   .workbench-sidebar {
     width: 100%;
@@ -594,9 +2077,309 @@
   .parts-grid {
     max-height: 400px;
   }
+  .design-summary-panel {
+    padding: 20px;
+  }
+  .design-coach-panel {
+    grid-template-columns: 1fr;
+  }
+  .summary-heading-row {
+    display: grid;
+  }
+  .summary-status-pill {
+    justify-self: start;
+  }
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+  .summary-item--wide {
+    grid-column: auto;
+  }
+  .model-asset-panel {
+    grid-template-columns: 1fr;
+  }
+  .chain-slots-container {
+    gap: 8px;
+    padding: 24px 10px;
+  }
+  .chain-slot {
+    width: 38px;
+    height: 38px;
+  }
 }
 @media screen and (max-width: 400px) {
   .parts-grid {
     grid-template-columns: 1fr;
+  }
+  .model-style-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+
+[data-md-color-scheme="slate"] .brand-hero::after,
+[data-md-color-scheme="slate"] .product-image-placeholder {
+  background:
+    radial-gradient(circle at 50% 38%, rgba(245, 239, 230, 0.16) 0 9%, transparent 10%),
+    radial-gradient(circle at 50% 38%, transparent 0 28%, rgba(114, 227, 253, 0.26) 29% 30%, transparent 31%),
+    linear-gradient(155deg, #201e1b, #2a2621);
+}
+
+[data-md-color-scheme="slate"] .product-image-birthstone {
+  background:
+    radial-gradient(circle at 42% 42%, rgba(114, 227, 253, 0.42) 0 5%, transparent 6%),
+    radial-gradient(circle at 50% 36%, rgba(231, 171, 181, 0.44) 0 5%, transparent 6%),
+    radial-gradient(circle at 58% 42%, rgba(226, 191, 95, 0.45) 0 5%, transparent 6%),
+    linear-gradient(135deg, #201e1b, #2a2621);
+}
+
+[data-md-color-scheme="slate"] .product-image-placeholder,
+[data-md-color-scheme="slate"] .product-image-placeholder span {
+  color: var(--jewelry-heading);
+}
+
+[data-md-color-scheme="slate"] .product-image-frame {
+  background: var(--jewelry-surface-muted);
+}
+
+[data-md-color-scheme="slate"] .product-image-asset {
+  filter: brightness(0.78) saturate(0.92);
+}
+
+[data-md-color-scheme="slate"] .product-image-placeholder span {
+  border-color: color-mix(in srgb, var(--jewelry-accent) 46%, transparent);
+  background: rgba(21, 20, 18, 0.72);
+}
+
+.search-status-display {
+  color: var(--jewelry-muted);
+  border-bottom-color: var(--jewelry-border);
+}
+
+.parts-empty-state,
+.arrangement-empty-state,
+.summary-status-pill {
+  color: var(--jewelry-muted);
+}
+
+.parts-empty-state {
+  border-color: var(--jewelry-border);
+  background: var(--jewelry-surface-muted);
+}
+
+.parts-empty-state strong,
+.arrangement-empty-state strong {
+  color: var(--jewelry-heading);
+}
+
+.arrangement-empty-state span {
+  color: var(--jewelry-muted);
+}
+
+.summary-status-pill {
+  border-color: var(--jewelry-border);
+  background: var(--jewelry-surface-muted);
+}
+
+.summary-status-pill.is-active {
+  border-color: color-mix(in srgb, var(--jewelry-accent) 38%, var(--jewelry-border));
+  color: var(--jewelry-accent-strong);
+  background: var(--jewelry-surface-muted);
+}
+
+[data-md-color-scheme="slate"] .preview-drop-zone {
+  background: color-mix(in srgb, var(--jewelry-surface) 80%, transparent);
+  color: var(--jewelry-muted);
+}
+
+[data-md-color-scheme="slate"] .preview-drop-zone.has-part {
+  background: var(--jewelry-surface-muted);
+  color: var(--jewelry-heading);
+}
+
+[data-md-color-scheme="slate"] .preview-drop-hint {
+  background: color-mix(in srgb, var(--jewelry-surface) 84%, transparent);
+  color: var(--jewelry-muted);
+}
+
+.item-controls button:hover {
+  background: var(--jewelry-surface-muted);
+  color: var(--jewelry-heading);
+}
+
+.remove-gem-btn {
+  background: var(--jewelry-surface);
+}
+
+/* 手機與暗色模式穩定層 */
+.search-bar input::placeholder,
+.search-status-display,
+.preview-note,
+.ar-tryon-note {
+  color: var(--jewelry-muted);
+}
+
+.part-card::after {
+  background: color-mix(in srgb, var(--jewelry-surface) 94%, transparent);
+  color: var(--jewelry-accent-strong);
+}
+
+#meaning-text {
+  border-color: var(--jewelry-border);
+}
+
+.arrangement-canvas.drag-over,
+.chain-slot.drag-over {
+  background: color-mix(in srgb, var(--jewelry-surface-muted) 76%, var(--jewelry-accent) 24%);
+}
+
+.chain-slots-container::before,
+.slot-placeholder {
+  background: var(--jewelry-border);
+}
+
+.chain-slot {
+  border-color: var(--jewelry-border);
+}
+
+.trash-zone {
+  border-color: var(--jewelry-danger-border);
+  background: var(--jewelry-danger-soft);
+  color: var(--jewelry-danger);
+}
+
+.trash-zone.drag-over {
+  border-color: var(--jewelry-danger);
+  background: color-mix(in srgb, var(--jewelry-danger-soft) 70%, var(--jewelry-surface) 30%);
+  color: var(--jewelry-danger-strong);
+}
+
+.item-controls button.delete-btn,
+.remove-gem-btn {
+  border-color: var(--jewelry-danger);
+  color: var(--jewelry-danger);
+  background: var(--jewelry-surface);
+}
+
+.item-controls button.delete-btn:hover,
+.remove-gem-btn:hover {
+  border-color: var(--jewelry-danger-strong);
+  background: var(--jewelry-danger-soft);
+  color: var(--jewelry-danger-strong);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .md-button:not(.md-button--primary) {
+  color: var(--jewelry-heading);
+}
+
+[data-md-color-scheme="slate"] .brand-hero .md-button:not(.md-button--primary) {
+  color: #fffaf3;
+}
+
+[data-md-color-scheme="slate"] .workbench-preview,
+[data-md-color-scheme="slate"] .workbench-sidebar,
+[data-md-color-scheme="slate"] .workbench-bottom,
+[data-md-color-scheme="slate"] .design-summary-panel,
+[data-md-color-scheme="slate"] .service-trust-card,
+[data-md-color-scheme="slate"] .product-card,
+[data-md-color-scheme="slate"] .selection-assist-panel,
+[data-md-color-scheme="slate"] .fit-guide-panel {
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.26);
+}
+
+@media screen and (max-width: 640px) {
+  .brand-hero {
+    min-height: auto;
+    padding: 72px 20px 34px;
+    background:
+      linear-gradient(180deg, rgba(12, 12, 12, 0.88) 0 58%, rgba(12, 12, 12, 0.68) 100%),
+      url("../assets/visuals/ceremony-necklace.svg") center bottom 18px / min(88vw, 420px) auto no-repeat,
+      linear-gradient(135deg, #101010, #31271d 58%, #121212);
+  }
+
+  .brand-hero h1 {
+    font-size: clamp(2.35rem, 13vw, 3.45rem);
+  }
+
+  .brand-lede {
+    font-size: 0.98rem;
+    line-height: 1.72;
+  }
+
+  .brand-actions {
+    display: grid;
+    gap: 10px;
+  }
+
+  .brand-actions .md-button,
+  .ar-tryon-link .md-button,
+  .atelier-readiness-actions .md-button {
+    width: 100%;
+  }
+
+  .luxury-edit-panel,
+  .collection-editorial {
+    gap: 18px;
+    padding: 22px 0;
+  }
+
+  .workbench-container {
+    padding: 12px;
+  }
+
+  .workbench-preview,
+  .workbench-sidebar,
+  .workbench-bottom,
+  .design-summary-panel {
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  .large-preview {
+    height: clamp(300px, 86vw, 380px);
+    min-height: 300px;
+  }
+
+  .model-style-buttons,
+  .parts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .model-style-btn,
+  .design-preset-btn,
+  .summary-item,
+  .part-card {
+    min-width: 0;
+  }
+
+  .chain-slots-container {
+    justify-content: flex-start;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding: 22px 12px;
+  }
+
+  .chain-slot {
+    flex: 0 0 38px;
+  }
+
+  .chain-slots-container::before {
+    left: 24px;
+    right: 24px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .chain-slots-container::before {
+    display: none;
+  }
+
+  .chain-slots-container {
+    gap: 7px;
+  }
+
+  .chain-slot {
+    flex-basis: 36px;
+    height: 36px;
+    width: 36px;
   }
 }

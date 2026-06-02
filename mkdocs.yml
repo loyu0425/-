@@ -1,9 +1,11 @@
-site_name: 我的文件網站
+site_name: Soft Jewelry Studio
 site_url: https://loyu0425.github.io/-/
+site_description: 手工項鍊設計品牌，提供產品系列、3D 設計工作台與 AR 試戴，協助訪客預覽款式、材質、寶石與配戴比例。
 repo_url: https://github.com/loyu0425/-
 theme:
   name: material
   language: zh-TW
+  custom_dir: overrides
   features:
     - navigation.tabs
     - navigation.sections
@@ -31,9 +33,13 @@ nav:
 plugins:
   - search
 
+extra:
+  brand_name: Soft Jewelry Studio
+  default_og_image: assets/social/soft-jewelry-og.png
+
 extra_javascript:
   - javascripts/necklace-configurator.js
-  - path: https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js
+  - path: https://unpkg.com/@google/model-viewer@4.2.0/dist/model-viewer.min.js
     type: module
 
 extra_css:
